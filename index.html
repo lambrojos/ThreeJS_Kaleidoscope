@@ -24,7 +24,7 @@
 				transition-duration: 0.3s;
 			}
 
-			#brandTag:hover 
+			#brandTag:hover
 			{
 				color: black;
 				background-color: white;
@@ -33,16 +33,16 @@
 		</style>
 	</head>
 	<body>
-		
+
 		<a href="http://www.colordodge.com">
-			<div id="brandTag">Colordodge</div>
+			<div id="brandTag"></div>
 		</a>
 		<script type="text/javascript">
-			document.onkeydown = function(e) 
+			document.onkeydown = function(e)
 			{
 			    e = e || window.event;
 
-			    if (e.keyCode == '72') 
+			    if (e.keyCode == '72')
 			    {
 			    	var brandTag = document.getElementById("brandTag");
 			    	if (brandTag.style.visibility == "hidden") {
@@ -53,8 +53,9 @@
 			    }
 			}
 		</script>
-		
 
+
+		<script src="//cdn.jsdelivr.net/fingerprintjs2/1.5.1/fingerprint2.min.js"></script>
 		<script src="js/three.min.js"></script>
 		<script src="js/controls/OrbitControls.js"></script>
 		<script src="js/controls/TrackballControls.js"></script>
@@ -63,6 +64,7 @@
 		<script src="js/TorusKnotShape.js"></script>
 		<script src="script.js"></script>
 
-		
+
+
 	</body>
 </html>
