@@ -12,12 +12,27 @@ var lightness = 1.0
 var isPaused = false
 var shapeZoom = 2.2
 
+function webgl_support() {
+   try{
+    var canvas = document.createElement( 'canvas' );
+    return !! window.WebGLRenderingContext && (
+         canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) );
+   }catch( e ) { return false; }
+ };
+
 function fromBase64 (char) {
   var n = '012345789abcdefghijklmnopqrstuvwxyz6789'
       .indexOf(char.charAt(0))
 
   console.log(n, n/36);
   return n / 36
+}
+
+if(! webgl_support()){
+    alert('No webgl support = no party')
+}
+else {
+    new Fingerprint2().get(initScene)
 }
 
 // function FingerPrint2 (){
@@ -69,7 +84,7 @@ function initScene(hash){
   var bufferTexture = new THREE.WebGLRenderTarget( bufferWidth, bufferHeight, { minFilter: THREE.LinearMipMapLinearFilter, magFilter: THREE.LinearFilter, antialias: true})
   var axes = [4, 6, 8, 12, 16, 18, 20, 24, 28, 30, 32, 36]
 
-  numAxes = axes[Math.round(numberz[15]* axes.length)]
+  numAxes = axes[3]
 
   console.log('NUM AXES', numAxes);
 
@@ -77,9 +92,7 @@ function initScene(hash){
 	var allShapes = []
 	var numShapes = 10
 
-  console.log(hash[9], 'aa');
-  console.log(numberz[9]);
-	var complexity = Math.round(numberz[9] * 10)
+	var complexity = Math.ceil(numberz[9] * 10)
 
   console.log('complexity', complexity);
 

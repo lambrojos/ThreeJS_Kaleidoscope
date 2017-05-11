@@ -12,9 +12,8 @@ function TorusKnotShape(numberz){
 	// this.sat = Math.random();
 	// this.sat2 = Math.random();
 	//
-	console.log(numberz[0], 'HUEHUE');
-	this.hue = numberz[0];
-  this.specHue = numberz[1];
+	this.hue = numberz[1];
+  this.specHue = numberz[2];
   this.sat = numberz[2];
   this.sat2 = numberz[3]
 
