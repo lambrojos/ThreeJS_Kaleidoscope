@@ -323,5 +323,5 @@ THREE.EditorControls = function ( object, domElement ) {
 
 };
 
-// THREE.EditorControls.prototype = Object.create( THREE.EventDispatcher.prototype );
-// THREE.EditorControls.prototype.constructor = THREE.EditorControls;
+THREE.EditorControls.prototype = Object.create( THREE.EventDispatcher.prototype );
+THREE.EditorControls.prototype.constructor = THREE.EditorControls;
