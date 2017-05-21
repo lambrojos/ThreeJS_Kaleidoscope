@@ -35,17 +35,12 @@ else {
     new Fingerprint2().get(initScene)
 }
 
-// function FingerPrint2 (){
-//
-//   this.get = function (cb) {
-//       return cb('porcooo')
-//   }
-// }
 
 new Fingerprint2().get(initScene)
 
 function initScene(hash){
 
+  hash = 'd3fb95a82046c210a7fd1f8f19eb0eef'
   document.getElementById("brandTag").innerHTML = hash;
 
   var numberz = new Array(hash.length)
@@ -92,7 +87,7 @@ function initScene(hash){
 	var allShapes = []
 	var numShapes = 10
 
-	var complexity = Math.ceil(numberz[9] * 10)
+	var complexity = Math.ceil(numberz[9] * 10) || 1
 
   console.log('complexity', complexity);
 
@@ -365,24 +360,24 @@ function initScene(hash){
 		}
 	}
 
-	window.addEventListener('resize', function()
-	{
-		var WIDTH = window.innerWidth
-		var HEIGHT = window.innerHeight
-		renderer.setSize(WIDTH, HEIGHT)
-
-		camera.left = window.innerWidth / - 2
-		camera.right = window.innerWidth / 2
-		camera.top = window.innerHeight / 2
-		camera.bottom = window.innerHeight / - 2
-		camera.updateProjectionMatrix()
-	})
-
-	window.addEventListener('keydown', function(e){
-		e = e || window.event
-
-	    if (e.keyCode == '32')  {
-	    	isPaused = !isPaused
-	    }
-	})
+	// window.addEventListener('resize', function()
+	// {
+	// 	var WIDTH = window.innerWidth
+	// 	var HEIGHT = window.innerHeight
+	// 	renderer.setSize(WIDTH, HEIGHT)
+  //
+	// 	camera.left = window.innerWidth / - 2
+	// 	camera.right = window.innerWidth / 2
+	// 	camera.top = window.innerHeight / 2
+	// 	camera.bottom = window.innerHeight / - 2
+	// 	camera.updateProjectionMatrix()
+	// })
+  //
+	// window.addEventListener('keydown', function(e){
+	// 	e = e || window.event
+  //
+	//     if (e.keyCode == '32')  {
+	//     	isPaused = !isPaused
+	//     }
+	// })
 }
