@@ -38,9 +38,10 @@ else {
 
 new Fingerprint2().get(initScene)
 
-function initScene(hash){
+function initScene(hashi, cose){
 
-  hash = 'd3fb95a82046c210a7fd1f8f19eb0eef'
+  console.log(cose);
+  //hash = 'd3fb95a82046c210a7fd1f8f19eb0eef'
   document.getElementById("brandTag").innerHTML = hash;
 
   var numberz = new Array(hash.length)
