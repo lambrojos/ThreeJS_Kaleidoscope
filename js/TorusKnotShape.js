@@ -1,17 +1,6 @@
 function TorusKnotShape(numberz){
-
-
-
 	var material = new THREE.MeshPhongMaterial({color:0x993300, specular:0xffff00, shading:THREE.FlatShading, side:THREE.DoubleSide});
-	// material.color.setHSL(1.0,0.5,0.5);
-	// material.specular.setHSL(0.5,1.0,0.1);
 	material.shininess = 30;
-
-	// this.hue = Math.random();
-	// this.specHue = Math.random();
-	// this.sat = Math.random();
-	// this.sat2 = Math.random();
-	//
 	this.hue = numberz[1];
   this.specHue = numberz[2];
   this.sat = numberz[2];
@@ -44,46 +33,10 @@ function TorusKnotShape(numberz){
 	var oscYSpeed = numberz[14] * 0.003;
 	var oscZSpeed = numberz[15] * 0.003;
 
-	this.update = function()
-	{
-		// this.updatePosition();
-		// this.updateColor();
-	}
-
-	this.updatePosition = function(){
-
-    console.log(this.mesh.rotation.x);
-		// this.mesh.rotation.x += rotSpeedX * speed;
-		// this.mesh.rotation.y += rotSpeedY * speed;
-		// // this.mesh.rotation.z += rotSpeedZ * speed;
-    //
-		// oscX += oscXSpeed * speed;
-		// oscY += oscYSpeed * speed;
-		// oscZ += oscZSpeed * speed;
-    //
-		// this.mesh.position.x = Math.cos(oscX) * 1;
-		// this.mesh.position.y = Math.sin(oscY) * 1;
-		// this.mesh.position.z = Math.sin(oscZ) * 1;
-	}
-
 	this.updateColor = function()
 	{
-
 		material.color.setHSL(this.hue, 0.5 - numberz[10] * 0.5, 0.3)
-
 		material.specular.setHSL(this.specHue, 0.5 - numberz[10] * 0.6, 0.5)
 	}
-
   this.updateColor();
-  this.updatePosition();
-
-	// this.randomizeColor = function()
-	// {
-	// 	this.hue = Math.random();
-	// 	this.specHue = Math.random();
-	// 	this.sat = Math.random();
-	// 	this.sat2 = Math.random();
-  //
-	// 	this.updateColor();
-	// }
 }
