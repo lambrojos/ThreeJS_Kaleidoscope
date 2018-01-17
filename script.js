@@ -24,7 +24,6 @@ function fromBase64 (char) {
   var n = '012345789abcdefghijklmnopqrstuvwxyz6789'
       .indexOf(char.charAt(0))
 
-  console.log(n, n/36);
   return n / 36
 }
 
@@ -40,8 +39,6 @@ new Fingerprint2().get(initScene)
 
 function initScene(hash, cose){
 
-  console.log(cose);
-  //hash = 'd3fb95a82046c210a7fd1f8f19eb0eef'
   document.getElementById("brandTag").innerHTML = hash;
 
   var numberz = new Array(hash.length)
@@ -62,19 +59,6 @@ function initScene(hash, cose){
 	var renderer = new THREE.WebGLRenderer({ antialias: true })
 	renderer.setSize(window.innerWidth, window.innerHeight)
 	document.body.appendChild(renderer.domElement)
-
-	// var controls = new THREE.TrackballControls(bufferCamera, renderer.domElement)
-	// controls.noZoom = true
-	// controls.dynamicDampingFactor = 0.1
-	// controls.rotateSpeed = 1
-  //
-	// var controls2 = new THREE.OrbitControls(camera, renderer.domElement)
-	// controls2.enableZoom = true
-	// controls2.enableRotate = false
-	// controls2.zoomSpeed = 0.3
-	// controls2.minZoom = 0.2
-	// controls2.maxZoom = 2
-	// controls2.enablePan = false
 
   var bufferScene = new THREE.Scene()
   var bufferTexture = new THREE.WebGLRenderTarget( bufferWidth, bufferHeight, { minFilter: THREE.LinearMipMapLinearFilter, magFilter: THREE.LinearFilter, antialias: true})
@@ -317,8 +301,6 @@ function initScene(hash, cose){
 
 	updateGridGeometry()
 
-
-	// test plane
 	var planeMat = new THREE.MeshBasicMaterial({map:bufferTexture, side:THREE.DoubleSide})
 	var planeGeo = new THREE.PlaneGeometry(bufferWidth/2, bufferHeight/2)
 	var planeObj = new THREE.Mesh(planeGeo, planeMat)
@@ -335,12 +317,6 @@ function initScene(hash, cose){
 		createShapes()
 	}
 
-  // function randomizeColor() {
-  //   for (var i = 0; i < numShapes; i++) {
-  //     allShapes[i].randomizeColor()
-  //   }
-  // }
-
   function render () {
     update()
     renderer.render(bufferScene, bufferCamera, bufferTexture)
@@ -351,8 +327,6 @@ function initScene(hash, cose){
 
 	function update()
 	{
-		//controls.update()
-
 		if (!isPaused)
 		{
 			for (var i=0; i<complexity; i++) {
@@ -360,25 +334,4 @@ function initScene(hash, cose){
 			}
 		}
 	}
-
-	// window.addEventListener('resize', function()
-	// {
-	// 	var WIDTH = window.innerWidth
-	// 	var HEIGHT = window.innerHeight
-	// 	renderer.setSize(WIDTH, HEIGHT)
-  //
-	// 	camera.left = window.innerWidth / - 2
-	// 	camera.right = window.innerWidth / 2
-	// 	camera.top = window.innerHeight / 2
-	// 	camera.bottom = window.innerHeight / - 2
-	// 	camera.updateProjectionMatrix()
-	// })
-  //
-	// window.addEventListener('keydown', function(e){
-	// 	e = e || window.event
-  //
-	//     if (e.keyCode == '32')  {
-	//     	isPaused = !isPaused
-	//     }
-	// })
 }
