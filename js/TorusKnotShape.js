@@ -1,6 +1,8 @@
 function TorusKnotShape(numberz){
+
 	var material = new THREE.MeshPhongMaterial({color:0x993300, specular:0xffff00, shading:THREE.FlatShading, side:THREE.DoubleSide});
 	material.shininess = 30;
+
 	this.hue = numberz[1];
   this.specHue = numberz[2];
   this.sat = numberz[2];

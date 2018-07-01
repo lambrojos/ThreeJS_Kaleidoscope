@@ -43,17 +43,17 @@ function initScene(hash){
 
   var scene = new THREE.Scene()
 
-  var bufferCamera = new THREE.PerspectiveCamera(75, bufferWidth / bufferHeight, 0.1, 1000)
-  bufferCamera.position.z = shapeZoom
+	var bufferCamera = new THREE.PerspectiveCamera(75, bufferWidth / bufferHeight, 0.1, 1000)
+	bufferCamera.position.z = shapeZoom
 
-  var camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 0.1, 1000 )
-  camera.position.z = 5
-  camera.zoom = 0.2
-  camera.updateProjectionMatrix()
+	var camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 0.1, 1000 )
+	camera.position.z = 5
+	camera.zoom = 0.2
+	camera.updateProjectionMatrix()
 
-  var renderer = new THREE.WebGLRenderer({ antialias: true })
-  renderer.setSize(window.innerWidth, window.innerHeight)
-  document.body.appendChild(renderer.domElement)
+	var renderer = new THREE.WebGLRenderer({ antialias: true })
+	renderer.setSize(window.innerWidth, window.innerHeight)
+	document.body.appendChild(renderer.domElement)
 
   var bufferScene = new THREE.Scene()
   var bufferTexture = new THREE.WebGLRenderTarget( bufferWidth, bufferHeight, { minFilter: THREE.LinearMipMapLinearFilter, magFilter: THREE.LinearFilter, antialias: true})
@@ -194,118 +194,119 @@ function initScene(hash){
 
           x = x1 + ( (x2-x1) * ratio )
           y = y1 + ( (y2-y1) * ratio )
-      }
+			}
 
-      tileGeometry.vertices.push(new THREE.Vector3(x ,y ,0))
-      theta += step
-    }
+			tileGeometry.vertices.push(new THREE.Vector3(x ,y ,0))
+			theta += step
+		}
 
-    // add faces
-    for (var i=0; i<numSteps; i++)
-    {
-      var v1 = i+1
-      var v2 = i+2
-      if (v2 > numSteps) v2 = 1
-      tileGeometry.faces.push( new THREE.Face3( 0, v1, v2 ) )
-    }
-
-    tileGeometry.computeBoundingSphere()
-    tileGeometry.computeBoundingBox()
-
-    // set UV mapping
-    tileGeometry.faceVertexUvs[0] = []
-
-    var mapWidth = 1/snapStep
-    var diff = 1 - mapWidth
-    var mapLeft = diff/2
-    var mapRight = 1 - diff/2
-
-    for (i = 0; i < tileGeometry.faces.length;  i++)
-    {
-      if (i%2)
-      {
-        tileGeometry.faceVertexUvs[0].push([
-          new THREE.Vector2( 0.5,  0),
-          new THREE.Vector2( mapLeft, 1),
-          new THREE.Vector2(  mapRight, 1)
-        ])
-      }
-      else
-      {
-        tileGeometry.faceVertexUvs[0].push([
-          new THREE.Vector2( 0.5,  0),
-          new THREE.Vector2( mapRight, 1),
-          new THREE.Vector2(  mapLeft, 1)
-        ])
-      }
-    }
-
-    tileGeometry.uvsNeedUpdate = true
+		// add faces
+		for (var i=0; i<numSteps; i++)
+		{
+			var v1 = i+1
+			var v2 = i+2
+			if (v2 > numSteps) v2 = 1
+			tileGeometry.faces.push( new THREE.Face3( 0, v1, v2 ) )
+		}
 
 
-    var tileRow = new THREE.Object3D()
-    tileHolder.add(tileRow)
-
-    var scale = bufferSize/3
-
-    var tileMesh = new THREE.Mesh(tileGeometry, tileMat)
-    tileMesh.scale.set( scale, scale, 1 )
-    tileMesh.rotation.z = rotOffset
-    tileRow.add(tileMesh)
-
-    var tileCountX = 15
-    for (var i=0; i<tileCountX; i++)
-    {
-      var tileMeshLeft = tileMesh.clone()
-      tileMeshLeft.position.x -= (tileWidth * scale) * (i+1)
-      tileRow.add(tileMeshLeft)
-
-      var tileMeshRight = tileMesh.clone()
-      tileMeshRight.position.x += (tileWidth * scale) * (i+1)
-      tileRow.add(tileMeshRight)
-    }
-
-    var tileCountY = 10
-    for (var i=0; i<tileCountY; i++)
-    {
-      var tileRowTop = tileRow.clone()
-      tileRowTop.position.y += tileHeight * scale * (i+1)
-      if (!(i%2)) tileRowTop.position.x += tileRowOffset * scale
-      tileHolder.add(tileRowTop)
-
-      var tileRowBottom = tileRow.clone()
-      tileRowBottom.position.y -= tileHeight * scale * (i+1)
-      if (!(i%2)) tileRowBottom.position.x += tileRowOffset * scale
-      tileHolder.add(tileRowBottom)
-    }
-
-    scene.add(tileHolder)
-  }
-
-  updateGridGeometry()
+		tileGeometry.computeBoundingSphere()
+		tileGeometry.computeBoundingBox()
 
 
-  // test plane
-  var planeMat = new THREE.MeshBasicMaterial({map:bufferTexture, side:THREE.DoubleSide})
-  var planeGeo = new THREE.PlaneGeometry(bufferWidth/2, bufferHeight/2)
-  var planeObj = new THREE.Mesh(planeGeo, planeMat)
-  scene.add(planeObj)
-  planeObj.visible = false
+		// set UV mapping
+		tileGeometry.faceVertexUvs[0] = []
+
+		var mapWidth = 1/snapStep
+		var diff = 1 - mapWidth
+		var mapLeft = diff/2
+		var mapRight = 1 - diff/2
+
+		for (i = 0; i < tileGeometry.faces.length;  i++)
+		{
+			if (i%2)
+			{
+				tileGeometry.faceVertexUvs[0].push([
+					new THREE.Vector2( 0.5,  0),
+					new THREE.Vector2( mapLeft, 1),
+					new THREE.Vector2(  mapRight, 1)
+				])
+			}
+			else
+			{
+				tileGeometry.faceVertexUvs[0].push([
+					new THREE.Vector2( 0.5,  0),
+					new THREE.Vector2( mapRight, 1),
+					new THREE.Vector2(  mapLeft, 1)
+				])
+			}
+		}
+
+		tileGeometry.uvsNeedUpdate = true
 
 
-  function randomize()
-  {
-    for (var i=0; i<numShapes; i++) {
-      bufferScene.remove(allShapes[i].mesh)
-    }
-    createShapes()
-  }
+		var tileRow = new THREE.Object3D()
+		tileHolder.add(tileRow)
+
+		var scale = bufferSize/3
+
+		var tileMesh = new THREE.Mesh(tileGeometry, tileMat)
+		tileMesh.scale.set( scale, scale, 1 )
+		tileMesh.rotation.z = rotOffset
+		tileRow.add(tileMesh)
+
+		var tileCountX = 15
+		for (var i=0; i<tileCountX; i++)
+		{
+			var tileMeshLeft = tileMesh.clone()
+			tileMeshLeft.position.x -= (tileWidth * scale) * (i+1)
+			tileRow.add(tileMeshLeft)
+
+			var tileMeshRight = tileMesh.clone()
+			tileMeshRight.position.x += (tileWidth * scale) * (i+1)
+			tileRow.add(tileMeshRight)
+		}
+
+		var tileCountY = 10
+		for (var i=0; i<tileCountY; i++)
+		{
+			var tileRowTop = tileRow.clone()
+			tileRowTop.position.y += tileHeight * scale * (i+1)
+			if (!(i%2)) tileRowTop.position.x += tileRowOffset * scale
+			tileHolder.add(tileRowTop)
+
+			var tileRowBottom = tileRow.clone()
+			tileRowBottom.position.y -= tileHeight * scale * (i+1)
+			if (!(i%2)) tileRowBottom.position.x += tileRowOffset * scale
+			tileHolder.add(tileRowBottom)
+		}
+
+
+
+		scene.add(tileHolder)
+	}
+
+	updateGridGeometry()
+
+	var planeMat = new THREE.MeshBasicMaterial({map:bufferTexture, side:THREE.DoubleSide})
+	var planeGeo = new THREE.PlaneGeometry(bufferWidth/2, bufferHeight/2)
+	var planeObj = new THREE.Mesh(planeGeo, planeMat)
+	scene.add(planeObj)
+	planeObj.visible = false
+
+
+	function randomize()
+	{
+		for (var i=0; i<numShapes; i++) {
+			allShapes[i].update()
+			bufferScene.remove(allShapes[i].mesh)
+		}
+		createShapes()
+	}
 
   function render () {
-    update()
     renderer.render(bufferScene, bufferCamera, bufferTexture)
     renderer.render(scene, camera)
-    requestAnimationFrame(render)
   }
   render()
 }
