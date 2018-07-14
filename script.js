@@ -23,7 +23,7 @@ if(! webgl_support()){
     alert('No webgl support')
 }
 
-new Fingerprint2().get(initScene)
+Fingerprint2.getV18({}, initScene)
 
 function takeScreenshot() {
   var a = document.createElement('a');
@@ -34,7 +34,7 @@ function takeScreenshot() {
 }
 
 // the hash is a murmur hash in hex format
-function initScene(hash){
+function initScene(hash, z){
   const brandTag = document.getElementById("brandTag")
   brandTag.onclick = takeScreenshot
   brandTag.innerHTML = hash;
@@ -232,7 +232,7 @@ function initScene(hash){
 					new THREE.Vector2(  mapLeft, 1)
 				])
 			}
-		}
+		}https://github.com/Valve/fingerprintjs2#upgrade-guide-from-182-to-200
 
 		tileGeometry.uvsNeedUpdate = true
 
